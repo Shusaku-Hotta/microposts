@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
-  def show # 追加
+  def show 
   end
   
   def new
@@ -31,6 +31,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+  end
+  
   private
   
   def set_user
