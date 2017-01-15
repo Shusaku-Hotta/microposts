@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  validates :location, presence: true, length: { maximum: 20 }, on: :update
+  validates :profile, presence: true, length: { maximum: 100 }, on: :update
+  
   has_many :microposts
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
@@ -15,7 +18,6 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
-end 
  
  # 他のユーザーをフォローする
   def follow(other_user)
